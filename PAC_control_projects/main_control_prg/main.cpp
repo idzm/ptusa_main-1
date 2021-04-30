@@ -234,10 +234,14 @@ int main( int argc, const char *argv[] )
         cycles_per_period++;
 
         static time_t t_;
-        struct tm *timeInfo_;
+        struct tm timeInfo_;
         t_ = time( 0 );
-        timeInfo_ = localtime( &t_ );
-        static int print_cycle_last_h = timeInfo_->tm_hour;
+#ifdef WIN_OS
+        localtime_s( &timeInfo_ , &t_ );
+#else
+        localtime_r( &t_, &timeInfo_ );
+#endif
+        static int print_cycle_last_h = timeInfo_.tm_hour;
 
         if ( max_iteration_cycle_time < cycle_time )
             {
@@ -245,7 +249,7 @@ int main( int argc, const char *argv[] )
             }
 
         //Once per hour writing performance info.
-        if ( print_cycle_last_h != timeInfo_->tm_hour )
+        if ( print_cycle_last_h != timeInfo_.tm_hour )
             {
             u_long avg_time = all_time / cycles_cnt;
 
@@ -273,7 +277,7 @@ int main( int argc, const char *argv[] )
             cycles_cnt = 0;
             max_iteration_cycle_time = 0;
             cycles_per_period 	     = 0;
-            print_cycle_last_h       = timeInfo_->tm_hour;
+            print_cycle_last_h       = timeInfo_.tm_hour;
             }
         //-Информация о времени выполнения цикла программы.!->
 #endif // TEST_SPEED
