@@ -74,3 +74,90 @@ TEST( PID, direct_set_value )
     EXPECT_EQ( .0f, m1->get_value() );
     EXPECT_EQ( 0, m1->get_state() );
     }
+
+int reverse( char* str )
+    {
+    auto l1 = strlen( str ) / 2;
+    auto l2 = l1 + strlen( str ) % 2;
+    for ( auto i = 0u, j = l2; i < l1; i++, j++ )
+        {
+        std::swap( str[ i ], str[ j ] );
+        }
+
+    return 0;
+    }
+
+int reverse2( char* str )
+    {
+    auto l = strlen( str );
+    for ( auto i = 0u; i + 1 < l; i += 2 )
+        {
+        std::swap( str[ i ], str[ i + 1 ] );
+        }
+
+    return 0;
+    }
+
+TEST( PID, direct_set_value1 )
+    {
+    char t1[] = "weathe";
+    reverse( t1 );
+
+    char t2[] = "weather";
+    reverse( t2 );
+
+    char t3[] = "";
+    reverse( t3 );
+    reverse2( t3 );
+
+
+    char t4[] = "123456789";
+    reverse2( t4 );
+    }
+
+
+  struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode() : val(0), next(nullptr) {}
+      ListNode(int x) : val(x), next(nullptr) {}
+      ListNode(int x, ListNode *next) : val(x), next(next) {}
+  };
+ 
+
+  class Solution
+      {
+      public:
+          ListNode* middleNode( ListNode* head ) {
+
+              auto l = 1;
+              auto p = head;
+              while ( p->next )
+                  {
+                  p = p->next;
+                  l++;
+                  }
+
+              l = l / 2;
+              while ( l )
+                  {
+                  head = head->next;
+                  l--;
+                  }
+
+              return head;
+              }
+      };
+
+  TEST( PID, direct_set_value2 )
+      {
+      ListNode ls( 1, nullptr );
+      //ls.next = new ListNode( 2, nullptr );
+      //ls.next->next = new ListNode( 3, nullptr );
+
+      ListNode* p = &ls;
+
+
+      Solution s;
+      s.middleNode( p );
+      }

@@ -18,7 +18,7 @@ tcp_client::tcp_client( const char* client_ip, unsigned int client_port, unsigne
     port = client_port;
     id = client_id;
     subclass = alarm_subclass;
-    buff = new char[exchange_buf_size];
+    buff = new unsigned char[exchange_buf_size];
     buff_size = exchange_buf_size;
     timeout = send_receive_timeout;
     async_timeout = send_receive_timeout * 2;

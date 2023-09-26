@@ -1700,3 +1700,10 @@ TEST( par_device, set_par_name )
     dev.save_device( buff );
     EXPECT_STREQ( "TEST_NAME=0, ", buff );
     } 
+
+
+TEST( digital_io_device, get_value )
+    {
+    digital_io_device dev1( "Test device", device::DT_DO, device::DST_DO_VIRT, 0 );
+    EXPECT_EQ( 0.f, dev1.get_value() );
+    }

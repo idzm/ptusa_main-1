@@ -366,7 +366,6 @@ int PID::set_cmd( const char* prop, u_int idx, double val )
     {
     if ( is_old_style )
         {
-
         if ( 0 == strcmp( prop, WORK_PARAMS_NAME ) )
             {
             if ( idx == WP_Z )

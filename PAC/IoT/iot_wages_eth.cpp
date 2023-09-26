@@ -45,7 +45,7 @@ void iot_wages_eth::convert_value()
     else
         {
         state = 1;
-        value = static_cast<float>( atof( tc->buff + 1 ) );
+        value = static_cast<float>( atof( static_cast<char*>( tc->buff ) + 1 ) );
         }
     }
 
