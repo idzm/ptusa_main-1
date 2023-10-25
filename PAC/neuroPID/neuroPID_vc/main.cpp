@@ -181,7 +181,7 @@ void init( HWND hWnd )
         ::setvbuf(stdout, NULL, _IONBF, 0);
         *stderr = *(::_fdopen(hCrt, "w"));
         ::setvbuf(stderr, NULL, _IONBF, 0);
-        std::ios::sync_with_stdio();
+        //std::ios::sync_with_stdio();
         }  
     SetConsoleCP ( 1251 );
     SetConsoleOutputCP ( 1251 );   

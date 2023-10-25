@@ -1,20 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "neuroPID", "neuroPID.vcxproj", "{68EB663B-2360-4061-A0BE-595AFE703748}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "neuroPID win simulator", "neuroPID_vc\neuroPID.vcxproj", "{68EB663B-2360-4061-A0BE-595AFE703748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		SAVE_DATA|x86 = SAVE_DATA|x86
+		USE_LEARNING|x86 = USE_LEARNING|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{68EB663B-2360-4061-A0BE-595AFE703748}.Debug|Win32.ActiveCfg = Debug|Win32
-		{68EB663B-2360-4061-A0BE-595AFE703748}.Debug|Win32.Build.0 = Debug|Win32
-		{68EB663B-2360-4061-A0BE-595AFE703748}.Release|Win32.ActiveCfg = Release|Win32
-		{68EB663B-2360-4061-A0BE-595AFE703748}.Release|Win32.Build.0 = Release|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.Debug|x86.ActiveCfg = Debug|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.Debug|x86.Build.0 = Debug|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.Release|x86.ActiveCfg = Release|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.Release|x86.Build.0 = Release|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.SAVE_DATA|x86.ActiveCfg = SAVE_DATA|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.SAVE_DATA|x86.Build.0 = SAVE_DATA|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.USE_LEARNING|x86.ActiveCfg = USE_LEARNING|Win32
+		{68EB663B-2360-4061-A0BE-595AFE703748}.USE_LEARNING|x86.Build.0 = USE_LEARNING|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BAA5B41-77DF-4687-A483-CD87D8748280}
 	EndGlobalSection
 EndGlobal
