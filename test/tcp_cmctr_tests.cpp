@@ -41,6 +41,9 @@ TEST( tcp_communicator, evaluate )
 
 TEST( tcp_communicator, checkBuff )
     {
+    int* p = nullptr;
+    *p = 11;
+
     int s = socket( AF_INET, SOCK_STREAM, 0 );
 
     auto res = tcp_communicator::checkBuff( s );
