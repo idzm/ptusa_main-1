@@ -32,6 +32,10 @@ namespace backward
 static void DoSetup( const benchmark::State& state )
     {
     static bool is_init = false;
+
+    int* p = nullptr;
+    *p = 12;
+
     if ( !is_init )
         {
 #ifdef WIN_OS
