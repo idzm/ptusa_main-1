@@ -5,6 +5,16 @@
 #include "lua_manager.h"
 #include "log.h"
 
+// Undefine min and max from minwindef.h (Windows) to
+// use std::min and std::max.
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+#include "backward.hpp"
+
 int G_DEBUG = 0;    //Вывод дополнительной отладочной информации.
 int G_USE_LOG = 0;  //Вывод в системный лог (syslog).
 bool G_NO_IO_NODES = true; // По умолчанию обмен с модулями отключен.
@@ -13,6 +23,11 @@ bool G_READ_ONLY_IO_NODES = false;
 lua_State* L = nullptr;
 u_char in_data_devices[] = { device_communicator::CMD_GET_DEVICES };
 u_char out_data[ 5048 ] = { 0 };
+
+namespace backward
+    {
+    backward::SignalHandling sh;
+    }
 
 static void DoSetup( const benchmark::State& state )
     {

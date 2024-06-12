@@ -29,3 +29,6 @@
 [submodule "cxxopts/cxxopts"]
 	path = deps/cxxopts/cxxopts
 	url = https://github.com/savushkin-r-d/cxxopts.git
+[submodule "deps/backward-cpp"]
+	path = deps/backward-cpp
+	url = https://github.com/bombela/backward-cpp.git

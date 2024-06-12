@@ -72,6 +72,8 @@ endif()
 
 add_subdirectory(deps/cxxopts EXCLUDE_FROM_ALL)
 
+add_subdirectory(deps/backward-cpp EXCLUDE_FROM_ALL)
+
 file(GLOB common_src CONFIGURE_DEPENDS
         common/PAC-driver/*.cpp
         common/util/*.c
@@ -160,7 +162,7 @@ elseif(WIN32)
 
 if(NOT MINGW)
     add_executable(main_perfomance_test ${common_src} ${win_src}
-           test/perfomance/main_perfomance_test.cpp           
+           test/perfomance/main_perfomance_test.cpp        
            PAC_control_projects/main_control_prg/version.rc)
 endif()
 
@@ -240,12 +242,12 @@ elseif (LINUX)
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/PAC/linux>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/PAC/linux/PAC_PC>
 
-if(ARP_DEVICE)
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/PAC/linux/PAC_PLCnext/PtusaPLCnextEngineer>
-        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/PtusaPLCnextEngineer/intermediate/code>
-endif()
-
+		if(ARP_DEVICE)
+				$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/PAC/linux/PAC_PLCnext/PtusaPLCnextEngineer>
+				$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/PtusaPLCnextEngineer/intermediate/code>
+		endif()
 endif ()
+
         if (USE_OPCUA)
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/open62541/open62541/include>
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/open62541/open62541/plugins/include>
@@ -264,7 +266,8 @@ endif ()
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/zlib>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/deps/zlib>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/fmt/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/cxxopts/cxxopts/include>)
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/cxxopts/cxxopts/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/backward-cpp>)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${GENERAL_INCLUDES})
 target_include_directories(libptusa_main PUBLIC ${GENERAL_INCLUDES})
@@ -322,7 +325,8 @@ if(USE_OPCUA)
     target_link_libraries(libptusa_main open62541::open62541)
     target_link_libraries(main_test open62541::open62541)
     if(NOT MINGW)
-        target_link_libraries(main_perfomance_test open62541::open62541)
+        target_link_libraries(main_perfomance_test
+			open62541::open62541 Backward::Interface)
     endif()
 endif()
 
@@ -381,6 +385,7 @@ else()
     endif()
 endif()
 
+list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 enable_testing()
 add_test(run_no_command_line_arguments ${PROJECT_NAME})
 if (WIN32)
