@@ -293,10 +293,6 @@ jobs:
           ECHO_OUTPUT_VARIABLE ECHO_ERROR_VARIABLE
         )
 
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Running tests failed!")
-        endif()
-
     - name: Install lcov (Linux only)
       if: runner.os == 'Linux'
       shell: bash

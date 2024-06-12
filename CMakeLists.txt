@@ -377,11 +377,11 @@ if(ARP_DEVICE)
     unset(_ARP_SHORT_DEVICE_VERSION)
 else()
     if (LINUX)
-        install(TARGETS ${PROJECT_NAME} libptusa_main
+        install(TARGETS ${PROJECT_NAME} libptusa_main main_perfomance_test
             LIBRARY DESTINATION $<CONFIG>
             RUNTIME DESTINATION $<CONFIG>)
     else()
-        install(TARGETS ${PROJECT_NAME} libptusa_main RUNTIME DESTINATION $<CONFIG>)
+        install(TARGETS ${PROJECT_NAME} libptusa_main main_perfomance_test RUNTIME DESTINATION $<CONFIG>)
     endif()
 endif()
 
