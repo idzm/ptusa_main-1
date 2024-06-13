@@ -26,7 +26,7 @@ u_char out_data[ 5048 ] = { 0 };
 
 namespace backward
     {
-    backward::SignalHandling sh;
+    static backward::SignalHandling sh;
     }
 
 static void DoSetup( const benchmark::State& state )
