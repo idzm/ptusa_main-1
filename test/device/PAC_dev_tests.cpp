@@ -1783,6 +1783,21 @@ TEST( valve_iolink_gea_tvis_a15_ss, evaluate_io )
         str_buff);
     EXPECT_EQ(true, V1.get_fb_state());
 
+    V1.direct_set_state(valve::VALVE_STATE::V_ON);
+    memset(str_buff, '\0', sizeof(str_buff));
+    temp_in = 0b0001011100001111;
+    *reinterpret_cast<int*>(&V1.AI_channels.int_read_values[0][0]) = temp_in;
+    pos = 1020;
+    *reinterpret_cast<int*>(&V1.AI_channels.int_read_values[0][1]) = pos;
+    std::swap(buff[2], buff[3]);
+    V1.evaluate_io();
+    V1.save_device(str_buff, "");
+    EXPECT_STREQ(
+        "VGEA1={M=0, ST=11, FB_ON_ST=0, FB_OFF_ST=0, CS=1, SUP=0, ERR=0, "
+        "V=102.0, P_ON_TIME=0, P_FB=0},\n",
+        str_buff);
+    EXPECT_EQ(false, V1.get_fb_state());
+
     G_PAC_INFO()->emulation_on();
     }
 
