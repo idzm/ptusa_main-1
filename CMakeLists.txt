@@ -39,13 +39,15 @@ if(MSVC)
     # Исключить конфликтующую библиотеку
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:LIBCMTD")
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /NODEFAULTLIB:LIBCMTD")
+
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 endif(MSVC)
 
 configure_file( version_info.in version_info.h @ONLY)
 
 set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(deps/fmt EXCLUDE_FROM_ALL)
-set(BUILD_SHARED_LIBS ON)
 
 add_subdirectory(deps/lua EXCLUDE_FROM_ALL)
 
@@ -54,13 +56,18 @@ set(LUA_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua/lua/src;${CMAKE_BINARY_
 
 add_subdirectory(deps/toluapp EXCLUDE_FROM_ALL)
 
+
 add_subdirectory(deps/zlib EXCLUDE_FROM_ALL)
 
+set(INSTALL_GTEST OFF)
+set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(deps/googletest EXCLUDE_FROM_ALL)
 
 add_subdirectory(deps/subhook EXCLUDE_FROM_ALL)
 
 if(NOT MINGW)
+    set (BENCHMARK_ENABLE_TESTING OFF)
+    set(BUILD_SHARED_LIBS OFF)
     add_subdirectory(deps/benchmark EXCLUDE_FROM_ALL)
 endif()
 

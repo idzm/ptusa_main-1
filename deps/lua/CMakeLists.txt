@@ -2,4 +2,6 @@ if(CMAKE_VERSION VERSION_GREATER_EQUAL "4.0")
     set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 endif()
 
+set(LUA_BUILD_AS_DLL OFF)
+set(LUA_BUILD_WLUA OFF)
 add_subdirectory(lua)
