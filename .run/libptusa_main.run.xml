@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="libptusa_main" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-e &quot;package.path = package.path..';./dairy-sys/?.lua'&quot; ./spec/ptusa_main.lua" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/../../ptusa-projects/BN1/BN1-Apparatus-comb/" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ptusa_main" TARGET_NAME="libptusa_main" CONFIG_NAME="Debug-wsl" RUN_PATH="/usr/bin/lua">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
