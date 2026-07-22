@@ -450,7 +450,12 @@ jobs:
         alert-comment-cc-users: '@idzm'
 
 
+    - name: Install
+      if: matrix.config.cxx == 'cl'
+      run: cmake --install build --prefix instdir
+
     - name: Install Strip
+      if: matrix.config.cxx != 'cl'
       run: cmake --install build --prefix instdir --strip
 
 
