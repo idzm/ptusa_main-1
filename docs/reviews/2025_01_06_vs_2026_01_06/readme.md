@@ -7,6 +7,9 @@
 | 2025-01-01..2025-07-28 | 101 | 99 | `PAC` (198 файлов), `test` (58), `deps` (42), `common` (29), `CMakeLists.txt` (18), `.github` (11) |
 | 2026-01-01..2026-07-28 | 125 | 125 | `PAC` (240), `test` (109), `.github` (89), `deps` (26), `common` (23), `CMakeLists.txt` (18) |
 
+Все ссылки на файлы в этом обзоре зафиксированы на коммите
+[`3a565983`](https://github.com/savushkin-r-d/ptusa_main/commit/3a56598316a1b45eda1c3370258065d0a08cca46).
+
 **Вывод:** в 2026 году объём изменений вырос (+24% коммитов, +26% PR), но состав
 сместился в сторону `CI/security/workflow`, `SDK/build` и
 `эмулятора/устойчивости`. В 2025 году было относительно больше работы над ядром
@@ -19,9 +22,9 @@
 Это самый заметный сдвиг 2026 года. Три наиболее правившиеся файла за период —
 это workflow:
 
-- [.github/workflows/cmake.yml:1-220](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/cmake.yml#L1-L220)
-- [.github/workflows/codeql-analysis.yml:12-105](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/codeql-analysis.yml#L12-L105)
-- [.github/workflows/sonar_build.yml:1-143](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/sonar_build.yml#L1-L143)
+- [.github/workflows/cmake.yml:1-220][github-workflows-cmake-yml-1-220]
+- [.github/workflows/codeql-analysis.yml:12-105][github-workflows-codeql-analysis-yml-12-105]
+- [.github/workflows/sonar_build.yml:1-143][github-workflows-sonar-build-yml-1-143]
 
 Значимые слияния:
 
@@ -30,24 +33,23 @@
   [`2e36bddd`](https://github.com/savushkin-r-d/ptusa_main/commit/2e36bddd))
   добавил поддержку AXCF2152 2026 LTS и расширил матрицу `CI/build`; текущая
   матрица теперь включает варианты 2024 и 2026 LTS в
-  [.github/workflows/cmake.yml:89-140](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/cmake.yml#L89-L140)
-  и соответствующие пресеты в
-  [CMakePresets.json:78-175](https://github.com/savushkin-r-d/ptusa_main/blob/master/CMakePresets.json#L78-L175).
+  [.github/workflows/cmake.yml:89-140][github-workflows-cmake-yml-89-140] и
+  соответствующие пресеты в
+  [CMakePresets.json:78-175][cmakepresets-json-78-175].
 - [PR #1372](https://github.com/savushkin-r-d/ptusa_main/pull/1372)
   (`fix_checkout_security`, merged 2026-07-06, commit
   [`f2a0add4`](https://github.com/savushkin-r-d/ptusa_main/commit/f2a0add4))
   включил unsafe PR checkout для CI; видно в
-  [.github/workflows/cmake.yml:148-159](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/cmake.yml#L148-L159)
-  и
-  [.github/workflows/sonar_build.yml:57-63](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/sonar_build.yml#L57-L63).
+  [.github/workflows/cmake.yml:148-159][github-workflows-cmake-yml-148-159] и
+  [.github/workflows/sonar_build.yml:57-63][github-workflows-sonar-build-yml-57-63].
 - [PR #1379](https://github.com/savushkin-r-d/ptusa_main/pull/1379)
   (`dev_sonar_config`, merged 2026-07-15, commit
   [`ca20e722`](https://github.com/savushkin-r-d/ptusa_main/commit/ca20e722))
   исключил demo и вендорный код из Sonar; см.
-  [sonar-project.properties:10-12](https://github.com/savushkin-r-d/ptusa_main/blob/master/sonar-project.properties#L10-L12).
+  [sonar-project.properties:10-12][sonar-project-properties-10-12].
 - Повторные обновления CodeQL/action шли весь год; текущая выделенная
   CMake-пайплайн CodeQL находится в
-  [.github/workflows/codeql-analysis.yml:48-105](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/codeql-analysis.yml#L48-L105).
+  [.github/workflows/codeql-analysis.yml:48-105][github-workflows-codeql-analysis-yml-48-105].
 
 Это также видно по меткам: в 2026 году слитые PR содержали 56 меток
 `dependencies` и 37 меток `github_actions`.
@@ -62,35 +64,32 @@
   [`51543073`](https://github.com/savushkin-r-d/ptusa_main/commit/51543073))
   исправил запись свойств устройств в режиме debug/emulator. Текущие кодовые
   пути:
-  [PAC/common/device/device.cpp:179-189](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/device/device.cpp#L179-L189),
-  [PAC/common/device/device.cpp:2167-2259](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/device/device.cpp#L2167-L2259),
-  [PAC/common/device/device.cpp:2361-2366](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/device/device.cpp#L2361-L2366);
+  [PAC/common/device/device.cpp:179-189][pac-common-device-device-cpp-179-189],
+  [PAC/common/device/device.cpp:2167-2259][pac-common-device-device-cpp-2167-2259],
+  [PAC/common/device/device.cpp:2361-2366][pac-common-device-device-cpp-2361-2366];
   покрытие тестами в
-  [test/device/PAC_dev_tests.cpp:740-748](https://github.com/savushkin-r-d/ptusa_main/blob/master/test/device/PAC_dev_tests.cpp#L740-L748),
-  [test/device/PAC_dev_tests.cpp:5586-5663](https://github.com/savushkin-r-d/ptusa_main/blob/master/test/device/PAC_dev_tests.cpp#L5586-L5663),
-  [test/device/PAC_dev_tests.cpp:5881-5883](https://github.com/savushkin-r-d/ptusa_main/blob/master/test/device/PAC_dev_tests.cpp#L5881-L5883).
+  [test/device/PAC_dev_tests.cpp:740-748][test-device-pac-dev-tests-cpp-740-748],
+  [test/device/PAC_dev_tests.cpp:5586-5663][test-device-pac-dev-tests-cpp-5586-5663],
+  [test/device/PAC_dev_tests.cpp:5881-5883][test-device-pac-dev-tests-cpp-5881-5883].
 - [PR #1193](https://github.com/savushkin-r-d/ptusa_main/pull/1193)
   (`copilot/add-error-indication-tags`, merged 2026-04-03, commit
   [`9a2017db`](https://github.com/savushkin-r-d/ptusa_main/commit/9a2017db))
   добавил системный показ ошибок узлов/watchdog; см.
-  [PAC/common/PAC_info.cpp:49-81](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/PAC_info.cpp#L49-L81),
-  [PAC/common/PAC_info.cpp:187-199](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/PAC_info.cpp#L187-L199),
-  а также объявления в
-  [PAC/common/PAC_info.h:117-146](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/PAC_info.h#L117-L146)
-  и
-  [PAC/common/PAC_info.h:179-191](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/PAC_info.h#L179-L191).
+  [PAC/common/PAC_info.cpp:49-81][pac-common-pac-info-cpp-49-81],
+  [PAC/common/PAC_info.cpp:187-199][pac-common-pac-info-cpp-187-199], а также
+  объявления в [PAC/common/PAC_info.h:117-146][pac-common-pac-info-h-117-146] и
+  [PAC/common/PAC_info.h:179-191][pac-common-pac-info-h-179-191].
 - [PR #1196](https://github.com/savushkin-r-d/ptusa_main/pull/1196)
   (`copilot/check-node-availability`, merged 2026-04-07, commit
   [`6e222c61`](https://github.com/savushkin-r-d/ptusa_main/commit/6e222c61))
   добавил проверки доступности узлов для `DO/AO`; интерфейс находится в
-  [PAC/common/bus_coupler_io.h:172-192](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/bus_coupler_io.h#L172-L192).
+  [PAC/common/bus_coupler_io.h:172-192][pac-common-bus-coupler-io-h-172-192].
 - [PR #1311](https://github.com/savushkin-r-d/ptusa_main/pull/1311)
   (`copilot/fix-set-cmd-behavior`, merged 2026-05-05, commit
   [`05edebd1`](https://github.com/savushkin-r-d/ptusa_main/commit/05edebd1))
   предотвратил ложное включение простоя при `STOP/PAUSE`; см.
-  [PAC/common/tech_def.cpp:131-166](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/tech_def.cpp#L131-L166)
-  и тесты в
-  [test/tech_def_tests.cpp:166-214](https://github.com/savushkin-r-d/ptusa_main/blob/master/test/tech_def_tests.cpp#L166-L214).
+  [PAC/common/tech_def.cpp:131-166][pac-common-tech-def-cpp-131-166] и тесты в
+  [test/tech_def_tests.cpp:166-214][test-tech-def-tests-cpp-166-214].
 
 ### 3) OPC UA и CLI не просто добавили — их уточнили
 
@@ -101,14 +100,14 @@
   [`9644e6df`](https://github.com/savushkin-r-d/ptusa_main/commit/9644e6df))
   переработал CLI-аргументы и консолидировал режимы OPC UA. Текущая обработка
   CLI находится в
-  [PAC/common/prj_mngr.cpp:41-147](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/prj_mngr.cpp#L41-L147),
-  путь применения OPC-режима — в
-  [PAC/common/prj_mngr.cpp:184-240](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/prj_mngr.cpp#L184-L240).
+  [PAC/common/prj_mngr.cpp:41-147][pac-common-prj-mngr-cpp-41-147], путь
+  применения OPC-режима — в
+  [PAC/common/prj_mngr.cpp:184-240][pac-common-prj-mngr-cpp-184-240].
 - [PR #1295](https://github.com/savushkin-r-d/ptusa_main/pull/1295)
   (`fix_OPC_to_non_block`, merged 2026-04-17, commit
   [`e6aeb40b`](https://github.com/savushkin-r-d/ptusa_main/commit/e6aeb40b))
   сделал сервер OPC UA неблокирующим; см.
-  [PAC/common/OPCUAServer.cpp:219-221](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/OPCUAServer.cpp#L219-L221).
+  [PAC/common/OPCUAServer.cpp:219-221][pac-common-opcuaserver-cpp-219-221].
 
 ### 4) Июль 2026 закончился серьёзным обслуживанием, а не всплеском новых функций
 
@@ -141,8 +140,7 @@
   (`dev_cmd_opc`, merged 2025-02-03, commit
   [`aa83ff0e`](https://github.com/savushkin-r-d/ptusa_main/commit/aa83ff0e))
   ввёл CLI-запуск OPC UA; позже это превратилось в более широкий текущий
-  CLI-сервис в
-  [PAC/common/prj_mngr.cpp:41-147](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/prj_mngr.cpp#L41-L147).
+  CLI-сервис в [PAC/common/prj_mngr.cpp:41-147][pac-common-prj-mngr-cpp-41-147].
 - [PR #911](https://github.com/savushkin-r-d/ptusa_main/pull/911) (`alg_io_up`,
   merged 2025-05-22, commit
   [`987c6b46`](https://github.com/savushkin-r-d/ptusa_main/commit/987c6b46))
@@ -154,19 +152,18 @@
   commit
   [`e17ce23b`](https://github.com/savushkin-r-d/ptusa_main/commit/e17ce23b))
   обновил `open62541`; эта подсистема остаётся центральной в
-  [CMakeLists.txt:106](https://github.com/savushkin-r-d/ptusa_main/blob/master/CMakeLists.txt#L106).
+  [CMakeLists.txt:106][cmakelists-txt-106].
 - [PR #981](https://github.com/savushkin-r-d/ptusa_main/pull/981)
   (`dev_cmake_presets`, merged 2025-07-16, commit
   [`1e76100a`](https://github.com/savushkin-r-d/ptusa_main/commit/1e76100a))
   добавил конфиги AXCF3152 2024 LTS, видимые в текущих пресетах/матрице в
-  [CMakePresets.json:127-175](https://github.com/savushkin-r-d/ptusa_main/blob/master/CMakePresets.json#L127-L175)
-  и
-  [.github/workflows/cmake.yml:116-140](https://github.com/savushkin-r-d/ptusa_main/blob/master/.github/workflows/cmake.yml#L116-L140).
+  [CMakePresets.json:127-175][cmakepresets-json-127-175] и
+  [.github/workflows/cmake.yml:116-140][github-workflows-cmake-yml-116-140].
 - [PR #989](https://github.com/savushkin-r-d/ptusa_main/pull/989)
   (`copilot/fix-14335de9-837b-473f-868f-b857431ac86d`, merged 2025-07-24, commit
   [`14e4e2f1`](https://github.com/savushkin-r-d/ptusa_main/commit/14e4e2f1))
   затронул путь парсинга датчика давления в
-  [PAC/common/device/device.cpp:3347-3491](https://github.com/savushkin-r-d/ptusa_main/blob/master/PAC/common/device/device.cpp#L3347-L3491).
+  [PAC/common/device/device.cpp:3347-3491][pac-common-device-device-cpp-3347-3491].
 
 Самые правившиеся негenerated файлы в 2025 году:
 
@@ -255,3 +252,64 @@
   `watchdog/системный статус`, `CLI/OPC UA`.
 - Больше автоматизации доставки: однозначно да — Dependabot и Copilot в 2026
   занимают значительно большую долю.
+
+
+<!-- File link definitions -->
+[github-workflows-cmake-yml-1-220]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/cmake.yml#L1-L220
+[github-workflows-codeql-analysis-yml-12-105]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/codeql-analysis.yml#L12-L105
+[github-workflows-sonar-build-yml-1-143]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/sonar_build.yml#L1-L143
+[github-workflows-cmake-yml-89-140]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/cmake.yml#L89-L140
+[cmakepresets-json-78-175]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/CMakePresets.json#L78-L175
+[github-workflows-cmake-yml-148-159]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/cmake.yml#L148-L159
+[github-workflows-sonar-build-yml-57-63]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/sonar_build.yml#L57-L63
+[sonar-project-properties-10-12]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/sonar-project.properties#L10-L12
+[github-workflows-codeql-analysis-yml-48-105]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/codeql-analysis.yml#L48-L105
+[pac-common-device-device-cpp-179-189]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/device/device.cpp#L179-L189
+[pac-common-device-device-cpp-2167-2259]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/device/device.cpp#L2167-L2259
+[pac-common-device-device-cpp-2361-2366]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/device/device.cpp#L2361-L2366
+[test-device-pac-dev-tests-cpp-740-748]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/test/device/PAC_dev_tests.cpp#L740-L748
+[test-device-pac-dev-tests-cpp-5586-5663]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/test/device/PAC_dev_tests.cpp#L5586-L5663
+[test-device-pac-dev-tests-cpp-5881-5883]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/test/device/PAC_dev_tests.cpp#L5881-L5883
+[pac-common-pac-info-cpp-49-81]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/PAC_info.cpp#L49-L81
+[pac-common-pac-info-cpp-187-199]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/PAC_info.cpp#L187-L199
+[pac-common-pac-info-h-117-146]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/PAC_info.h#L117-L146
+[pac-common-pac-info-h-179-191]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/PAC_info.h#L179-L191
+[pac-common-bus-coupler-io-h-172-192]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/bus_coupler_io.h#L172-L192
+[pac-common-tech-def-cpp-131-166]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/tech_def.cpp#L131-L166
+[test-tech-def-tests-cpp-166-214]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/test/tech_def_tests.cpp#L166-L214
+[pac-common-prj-mngr-cpp-41-147]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/prj_mngr.cpp#L41-L147
+[pac-common-prj-mngr-cpp-184-240]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/prj_mngr.cpp#L184-L240
+[pac-common-opcuaserver-cpp-219-221]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/OPCUAServer.cpp#L219-L221
+[cmakelists-txt-106]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/CMakeLists.txt#L106
+[cmakepresets-json-127-175]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/CMakePresets.json#L127-L175
+[github-workflows-cmake-yml-116-140]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/.github/workflows/cmake.yml#L116-L140
+[pac-common-device-device-cpp-3347-3491]:
+    https://github.com/savushkin-r-d/ptusa_main/blob/3a56598316a1b45eda1c3370258065d0a08cca46/PAC/common/device/device.cpp#L3347-L3491
